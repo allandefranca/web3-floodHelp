@@ -1,7 +1,11 @@
 import Web3 from "web3";
 import ABI from "./ABI.json";
 
-const CONTRACT_ADDRESS = "0x8933a225A4057e7c6ac4F590187D8a4d9305F9b9";
+export const contractCreatorAddress = "";
+const CONTRACT_ADDRESS = "";
+
+
+export default contractCreatorAddress;
 
 export async function doLogin(){
     if(!window.ethereum) throw new Error("Sem Metamask instalada!");
@@ -12,6 +16,21 @@ export async function doLogin(){
 
     localStorage.setItem("wallet", accounts[0].toLowerCase());
     return accounts[0];
+}
+
+export async function doLogout(){
+    if (window.ethereum && window.ethereum.selectedAddress) {
+        window.ethereum.request({
+            method: 'wallet_requestPermissions',
+            params: [{
+                eth_accounts: {}
+            }]
+        })
+    }
+    // Clear the Web3 instance
+    if (window.web3) {
+        window.web3 = undefined;
+    }
 }
 
 function getContract(){
@@ -29,6 +48,18 @@ export async function getOpenRequests(lastId = 0){
     return requests.filter(rq => rq.title !== "");
     
 }   
+
+export async function getPendingRequests(lastId = 0){
+    const contract = getContract();
+    const requests = await contract.methods.viewPendingRequests().call();
+    return requests.filter(rq => rq.title !== "");
+    
+}   
+
+export async function changeRequestStatus(id,statusId){
+    const contract = getContract();
+    return contract.methods.changeRequestStatus(id,statusId).send();
+}
 
 export async function openRequest({ title, description, contact, goal }){
     const contract = getContract();
