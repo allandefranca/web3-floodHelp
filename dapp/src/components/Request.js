@@ -1,8 +1,9 @@
-import { closeRequest, donate } from "@/services/Web3Service";
+import { closeRequest, donate, contractCreatorAddress } from "@/services/Web3Service";
 import { generateAvatarURL } from "@cfx-kit/wallet-avatar"
 import Web3 from "web3"
 
 export default function Request({ data }){
+
 
     function btnCloseClick(){
        if(!confirm("Tem certeza que deseja fechar este pedido?")) return;
@@ -44,7 +45,7 @@ export default function Request({ data }){
                             <div className="col-2">
                                 <div className="text-end">
                                     {
-                                        localStorage.getItem("wallet") === data.author.toLowerCase()
+                                        localStorage.getItem("wallet") === data.author.toLowerCase() || localStorage.getItem("wallet") === contractCreatorAddress.toLowerCase()
                                         ? <button type="button" className="btn btn-danger btn-sm" onClick={btnCloseClick}>Fechar</button>
                                         :  <button type="button" className="btn btn-success btn-sm" onClick={btnHelpClick}>&#36; Ajudar</button>
                                     }

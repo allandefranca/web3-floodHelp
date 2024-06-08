@@ -2,7 +2,7 @@ import { changeRequestStatus } from "@/services/Web3Service";
 import { generateAvatarURL } from "@cfx-kit/wallet-avatar"
 import Web3 from "web3"
 
-export default function Request({ data }){
+export default function Pending({ data }){
 
     function btnAproveClick(){
         if(!confirm("Tem certeza que deseja Aprovar este pedido?")) return;

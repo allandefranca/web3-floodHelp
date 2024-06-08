@@ -49,9 +49,9 @@ export async function getOpenRequests(lastId = 0){
     
 }   
 
-export async function getPendingRequests(lastId = 0){
+export async function getPendingRequests(){
     const contract = getContract();
-    const requests = await contract.methods.viewPendingRequests().call();
+    const requests = await contract.methods.getPendingRequests().call();
     return requests.filter(rq => rq.title !== "");
     
 }   

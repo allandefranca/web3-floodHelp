@@ -10,7 +10,6 @@ export default function Header() {
 
     useEffect(() => {
         setWallet(localStorage.getItem("wallet") || "")
-        console.log("testudo" + contractCreatorAddress);
     }, [])
 
     function btnLoginClick(){
