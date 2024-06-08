@@ -1,8 +1,8 @@
 import Web3 from "web3";
 import ABI from "./ABI.json";
 
-export const contractCreatorAddress = "";
-const CONTRACT_ADDRESS = "";
+export const contractCreatorAddress = "0xfF9ceE28e8a8AEcA67F46d7C65B70a8722865422";
+const CONTRACT_ADDRESS = "0x33511CEe3f37D835a8f50F00562c503838C0De14";
 
 
 export default contractCreatorAddress;
