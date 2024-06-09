@@ -46,7 +46,7 @@ export default function Request({ data }){
                                 <div className="text-end">
                                     {
                                         localStorage.getItem("wallet") === data.author.toLowerCase() || localStorage.getItem("wallet") === contractCreatorAddress.toLowerCase()
-                                        ? <button type="button" className="btn btn-danger btn-sm" onClick={btnCloseClick}>Fechar</button>
+                                        ?  <button type="button" className="btn btn-danger btn-sm" onClick={btnCloseClick}>Fechar</button>
                                         :  <button type="button" className="btn btn-success btn-sm" onClick={btnHelpClick}>&#36; Ajudar</button>
                                     }
                                 </div>
@@ -56,12 +56,25 @@ export default function Request({ data }){
                         <div className="row">
                             <div className="col">
                                     <span className="me-1 opacity-75">Meta:</span>
-                                    <span className="opacity-50"></span>
+                                    <span className="opacity-50">
                                     {
                                         data.balance
                                             ? `BNB ${Web3.utils.fromWei(data.balance, "ether")} obitidos de ${Web3.utils.fromWei(data.goal,"ether")}`
                                             : `BNB ${Web3.utils.fromWei(data.goal, "ether")}`
                                     }
+                                    </span>
+                            </div>
+                            <div className="row">
+                                <div className="col"> 
+                                {
+                                    localStorage.getItem("wallet") === contractCreatorAddress.toLowerCase()
+                                    ?   <>
+                                        <span className="me-1 opacity-75">Author:</span>
+                                        <span className="opacity-50">{data.author}</span>
+                                        </>
+                                    :   <></>
+                                }
+                                </div>       
                             </div>
 
                         </div>

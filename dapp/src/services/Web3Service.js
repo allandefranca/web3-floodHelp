@@ -1,8 +1,8 @@
 import Web3 from "web3";
 import ABI from "./ABI.json";
 
-export const contractCreatorAddress = "";
-const CONTRACT_ADDRESS = "";
+export const contractCreatorAddress = "0xfF9ceE28e8a8AEcA67F46d7C65B70a8722865422";
+const CONTRACT_ADDRESS = "0x33511CEe3f37D835a8f50F00562c503838C0De14";
 
 
 export default contractCreatorAddress;
@@ -56,6 +56,13 @@ export async function getPendingRequests(){
     
 }   
 
+export async function getBlacklistedAddresses(){
+    const contract = getContract();
+    const requests = await contract.methods.getBlacklistedAddresses().call();
+    return requests.filter(rq => rq.title !== "");
+    
+}   
+
 export async function changeRequestStatus(id,statusId){
     const contract = getContract();
     return contract.methods.changeRequestStatus(id,statusId).send();
@@ -76,4 +83,14 @@ export async function donate(id, donateInBnb){
     return contract.methods.donate(id).send({
         value: Web3.utils.toWei(donateInBnb, "ether")
     });
+}
+
+export async function removeFromBlacklist(address){
+    const contract = getContract();
+    return contract.methods.removeFromBlacklist(address).send();
+}
+
+export async function addFromBlacklist(address){
+    const contract = getContract();
+    return contract.methods.addToBlacklist(address).send();
 }
