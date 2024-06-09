@@ -8,4 +8,5 @@ Our FloodHelp.sol smart contract.
 ## dapp
 Our FloodHelp web3 frontend.
 ![Main Page](screenshots/MainPage.png)
+![Admin Page](screenshots/AdminPage.png)
 ![Create Page](screenshots/CreatePage.png)
